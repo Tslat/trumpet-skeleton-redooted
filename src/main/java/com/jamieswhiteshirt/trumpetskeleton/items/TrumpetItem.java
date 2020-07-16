@@ -6,10 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -23,12 +20,17 @@ public class TrumpetItem extends Item {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.NONE;
+        return UseAction.DRINK;
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
         return 55;
+    }
+
+    @Override
+    public SoundEvent getDrinkSound() {
+        return null;
     }
 
     @Override

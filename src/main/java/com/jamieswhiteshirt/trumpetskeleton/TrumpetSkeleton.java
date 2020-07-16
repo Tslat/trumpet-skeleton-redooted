@@ -1,26 +1,17 @@
 package com.jamieswhiteshirt.trumpetskeleton;
 
 import com.jamieswhiteshirt.trumpetskeleton.entities.TrumpetSkeletonEntity;
-import com.jamieswhiteshirt.trumpetskeleton.items.TrumpetItem;
 import com.jamieswhiteshirt.trumpetskeleton.register.Entities;
 import com.jamieswhiteshirt.trumpetskeleton.register.Items;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -68,44 +59,6 @@ public class TrumpetSkeleton {
                 (itemColor, itemsIn) -> Items.TRUMPET_SEKELETON_SPAWN_EGG.get().getColor(itemsIn),
                 Items.TRUMPET_SEKELETON_SPAWN_EGG.get()
         );
-    }
-
-    @SubscribeEvent
-    public void onActiveItemUseTick(final LivingEntityUseItemEvent.Tick event) {
-        ItemStack stack = event.getItem();
-
-        if (stack.getItem() == Items.TRUMPET_ITEM.get()) {
-            if (event.getDuration() == stack.getUseDuration() - 10) {
-                LivingEntity user = event.getEntityLiving();
-                World world = user.world;
-
-                user.playSound(
-                        TrumpetItem.trumpetSound,
-                        1.0F,
-                        0.9F + world.rand.nextFloat() * 0.2F
-                );
-
-                TrumpetItem.scare(world, user);
-                stack.damageItem(1, user, (entity) -> entity.sendBreakAnimation(user.getActiveHand()));
-            } else if (event.getDuration() <= stack.getUseDuration() - 15) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onPlaySoundAtEntity(final PlaySoundAtEntityEvent event) {
-        Entity entity = event.getEntity();
-
-        if (entity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) entity;
-
-            if (player.getActiveItemStack().getItem() == Items.TRUMPET_ITEM.get()) {
-                if (event.getSound() == SoundEvents.ENTITY_GENERIC_EAT) {
-                    event.setCanceled(true);
-                }
-            }
-        }
     }
 
     @SubscribeEvent
