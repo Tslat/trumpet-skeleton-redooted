@@ -28,8 +28,8 @@ public class Items {
 
             () -> new SupplierSpawnEggItem(
                     Entities.TRUMPET_SKELETON_ENTITY,
-                    0x9E9E9E,
-                    0xF6F3EF,
+                    0xC1C1C1,
+                    0xFCFC00,
 
                     new Item.Properties().group(ItemGroup.MISC)
             )
