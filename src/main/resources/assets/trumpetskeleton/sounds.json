@@ -1,8 +1,11 @@
 {
   "entity.trumpet_skeleton.ambient": {
     "subtitle": "subtitles.entity.trumpetskeleton.trumpet_skeleton.ambient",
-    "sounds": [ "trumpetskeleton:doot_doot" ]
+    "sounds": [
+      "trumpetskeleton:doot_doot"
+    ]
   },
+
   "entity.parrot.imitate.trumpet_skeleton": {
     "sounds": [
       {
@@ -13,8 +16,11 @@
     ],
     "subtitle": "subtitles.entity.parrot.imitate.trumpet_skeleton"
   },
+
   "item.trumpet.use": {
     "subtitle": "subtitles.item.trumpetskeleton.trumpet.use",
-    "sounds": [ "trumpetskeleton:doot_doot" ]
+    "sounds": [
+      "trumpetskeleton:doot_doot"
+    ]
   }
 }

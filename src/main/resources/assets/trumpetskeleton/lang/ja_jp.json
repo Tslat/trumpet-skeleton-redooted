@@ -1,9 +1,10 @@
 {
-  "entity.trumpetskeleton.TrumpetSkeleton.name": "トランペット・スケルトン",
+  "entity.trumpetskeleton.trumpet_skeleton": "トランペット・スケルトン",
 
   "subtitles.entity.trumpetskeleton.trumpet_skeleton.ambient": "スケルトンのプップー",
   "subtitles.entity.parrot.imitate.trumpet_skeleton": "Parrot, doots",
   "subtitles.item.trumpetskeleton.trumpet.use": "プップープップー",
 
-  "item.trumpetskeleton.trumpet.name": "トランペット"
+  "item.trumpetskeleton.trumpet": "トランペット",
+  "item.trumpetskeleton.trumpet_skeleton_spawn_egg": "Trumpet Skeleton Spawn Egg"
 }
