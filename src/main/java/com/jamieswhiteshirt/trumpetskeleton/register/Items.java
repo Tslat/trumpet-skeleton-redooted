@@ -23,7 +23,7 @@ public class Items {
             )
     );
 
-    public static final RegistryObject<SpawnEggItem> TRUMPET_SEKELETON_SPAWN_EGG = REGISTER.register(
+    public static final RegistryObject<SpawnEggItem> TRUMPET_SKELETON_SPAWN_EGG = REGISTER.register(
             "trumpet_skeleton_spawn_egg",
 
             () -> new SupplierSpawnEggItem(

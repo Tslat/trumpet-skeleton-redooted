@@ -56,8 +56,8 @@ public class TrumpetSkeleton {
     @OnlyIn(Dist.CLIENT)
     public void setupItemColours(final ColorHandlerEvent.Item event) {
         event.getItemColors().register(
-                (itemColor, itemsIn) -> Items.TRUMPET_SEKELETON_SPAWN_EGG.get().getColor(itemsIn),
-                Items.TRUMPET_SEKELETON_SPAWN_EGG.get()
+                (itemColor, itemsIn) -> Items.TRUMPET_SKELETON_SPAWN_EGG.get().getColor(itemsIn),
+                Items.TRUMPET_SKELETON_SPAWN_EGG.get()
         );
     }
 
