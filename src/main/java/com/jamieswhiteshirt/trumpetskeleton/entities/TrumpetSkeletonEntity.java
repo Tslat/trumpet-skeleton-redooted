@@ -15,8 +15,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class TrumpetSkeletonEntity extends SkeletonEntity {
-    private static final SoundEvent skeletonSound = new SoundEvent(new ResourceLocation(TrumpetSkeleton.MOD_ID, "entity.trumpet_skeleton.ambient"));
     public static final SoundEvent parrotSound = new SoundEvent(new ResourceLocation(TrumpetSkeleton.MOD_ID, "entity.parrot.imitate.trumpet_skeleton"));
+    private static final SoundEvent skeletonSound = new SoundEvent(new ResourceLocation(TrumpetSkeleton.MOD_ID, "entity.trumpet_skeleton.ambient"));
 
     public TrumpetSkeletonEntity(EntityType<? extends SkeletonEntity> p_i50194_1_, World p_i50194_2_) {
         super(p_i50194_1_, p_i50194_2_);

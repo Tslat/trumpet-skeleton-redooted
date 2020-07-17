@@ -1,8 +1,8 @@
 package com.jamieswhiteshirt.trumpetskeleton.register;
 
 import com.jamieswhiteshirt.trumpetskeleton.TrumpetSkeleton;
-import com.jamieswhiteshirt.trumpetskeleton.items.TrumpetItem;
 import com.jamieswhiteshirt.trumpetskeleton.items.SupplierSpawnEggItem;
+import com.jamieswhiteshirt.trumpetskeleton.items.TrumpetItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;

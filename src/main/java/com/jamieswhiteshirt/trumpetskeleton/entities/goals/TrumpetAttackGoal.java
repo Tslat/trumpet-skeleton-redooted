@@ -5,16 +5,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.item.ItemStack;
 
 import java.util.EnumSet;
 
 public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
     private final T actor;
     private final double speed;
-    private int attackInterval;
     private final float squaredRange;
-
+    private int attackInterval;
     private int cooldown = -1;
     private int seeCounter;
     private boolean strafeLeft;

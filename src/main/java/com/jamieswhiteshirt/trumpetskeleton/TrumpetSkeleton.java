@@ -15,8 +15,10 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -29,10 +31,8 @@ import java.util.HashMap;
 
 @Mod(TrumpetSkeleton.MOD_ID)
 public class TrumpetSkeleton {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     public static final String MOD_ID = "trumpetskeleton";
-    public static final String VERSION = "1.12-1.0.2.1";
+    private static final Logger LOGGER = LogManager.getLogger("TrumpetSkeleton");
 
     public TrumpetSkeleton() {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -41,6 +41,8 @@ public class TrumpetSkeleton {
 
         Entities.REGISTER.register(eventBus);
         Items.REGISTER.register(eventBus);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.CONFIG);
     }
 
     @SubscribeEvent
@@ -93,21 +95,35 @@ public class TrumpetSkeleton {
 
     private void addSpawns() {
         DeferredWorkQueue.runLater(() -> {
-            for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-                for (Biome.SpawnListEntry entry : biome.getSpawns(EntityClassification.MONSTER)) {
-                    if (entry.entityType == EntityType.SKELETON) {
+            double relativeWeight = Config.RELATIVE_SPAWN_WEIGHT.get();
+
+            if (relativeWeight > 0) {
+                for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
+                    int skeletonWeight = 0;
+
+                    for (Biome.SpawnListEntry entry : biome.getSpawns(EntityClassification.MONSTER)) {
+                        if (entry.entityType == EntityType.SKELETON) {
+                            skeletonWeight += entry.itemWeight;
+                        }
+                    }
+
+                    if (skeletonWeight > 0) {
+                        int computedWeight = (int) Math.ceil(skeletonWeight * relativeWeight);
+
+                        LOGGER.debug("Computed weight for biome " + biome.getRegistryName() + " is " + computedWeight);
+
                         biome.getSpawns(EntityClassification.MONSTER).add(
                                 new Biome.SpawnListEntry(
                                         Entities.TRUMPET_SKELETON_ENTITY.get(),
-                                        entry.itemWeight / 4,
-                                        entry.minGroupCount,
-                                        entry.maxGroupCount
+                                        (int) Math.ceil(skeletonWeight * relativeWeight),
+                                        1,
+                                        1
                                 )
                         );
-
-                        break;
                     }
                 }
+            } else {
+                LOGGER.info("Trumpet skeletons have been configured not to spawn; not registering spawn entries.");
             }
         });
     }
