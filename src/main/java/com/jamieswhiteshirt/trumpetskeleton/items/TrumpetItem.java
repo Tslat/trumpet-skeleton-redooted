@@ -1,6 +1,6 @@
 package com.jamieswhiteshirt.trumpetskeleton.items;
 
-import com.jamieswhiteshirt.trumpetskeleton.TrumpetSkeleton;
+import com.jamieswhiteshirt.trumpetskeleton.register.SoundEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -8,15 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import java.util.List;
 
 public class TrumpetItem extends Item {
-    public static final SoundEvent trumpetSound = new SoundEvent(new ResourceLocation(TrumpetSkeleton.MOD_ID, "item.trumpet.use"));
-
     public TrumpetItem(Properties properties) {
         super(properties);
     }
@@ -70,7 +67,7 @@ public class TrumpetItem extends Item {
         int useTime = getUseDuration(stack) - count;
 
         if (useTime == 10) {
-            player.playSound(TrumpetItem.trumpetSound, 1, 0.9F + player.world.rand.nextFloat() * 0.2F);
+            player.playSound(SoundEvents.TRUMPET_DOOT.get(), 1, 0.9F + player.world.rand.nextFloat() * 0.2F);
             TrumpetItem.scare(player.world, player);
             stack.damageItem(1, player, (entity) -> entity.sendBreakAnimation(entity.getActiveHand()));
         } else if (useTime >= 15) {

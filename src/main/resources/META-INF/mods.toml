@@ -12,7 +12,7 @@ description='''
 The sound of trumpets echoes through the night...
 '''
 
-[[dependencies.sakurarosea]]
+[[dependencies.trumpetskeleton]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"
