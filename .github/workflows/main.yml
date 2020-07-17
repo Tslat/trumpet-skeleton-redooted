@@ -23,13 +23,9 @@ jobs:
       - name: Gradle (Build)
         run: sh gradlew build
 
-      - name: Rename artifact
-        run: |
-          mv build/libs/trumpetskeleton-*.jar build/libs/trumpetskeleton-latest-$GITHUB_REF_NAME_SLUG.jar
-
       - name: Upload artifact (JAR)
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
 
         with:
           name: JAR
-          path: build/libs/trumpetskeleton-latest-$GITHUB_REF_NAME_SLUG.jar
+          path: build/libs/trumpetskeleton-*.jar
