@@ -32,4 +32,4 @@ jobs:
 
         with:
           name: JAR
-          path: kord-build/libs/trumpetskeleton.jar
+          path: build/libs/trumpetskeleton-latest-$GITHUB_REF_NAME_SLUG.jar
