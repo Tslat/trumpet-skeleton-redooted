@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: GitHub Environment Variables Action
+        uses: FranzDiebold/github-env-vars-action@v1.2.0
+
+      - name: Set up Java
+        uses: actions/setup-java@v1.0.0
+
+        with:
+          version: 1.8
+
+      - name: Gradle (Build)
+        run: sh gradlew build
+
+      - name: Rename artifact
+        run: |
+          mv build/libs/trumpetskeleton-*.jar build/libs/trumpetskeleton-latest-$GITHUB_REF_NAME_SLUG.jar
+
+      - name: Upload artifact (JAR)
+        uses: actions/upload-artifact@v1.0.0
+
+        with:
+          name: JAR
+          path: kord-build/libs/trumpetskeleton.jar
