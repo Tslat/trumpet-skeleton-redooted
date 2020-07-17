@@ -76,8 +76,6 @@ public class TrumpetSkeleton {
         Field f = ObfuscationReflectionHelper.findField(ParrotEntity.class, "field_192017_bK");
 
         try {
-            f.setAccessible(true);  // Bypass `private` access modifier.
-
             // Get a reference to the underlying HashMap
             HashMap<EntityType<?>, SoundEvent> imitationSound = (HashMap<EntityType<?>, SoundEvent>) f.get(ParrotEntity.class);
 
