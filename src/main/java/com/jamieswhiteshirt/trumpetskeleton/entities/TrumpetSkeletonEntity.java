@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class TrumpetSkeletonEntity extends SkeletonEntity {
     private final TrumpetAttackGoal<TrumpetSkeletonEntity> trumpetAttackGoal = new TrumpetAttackGoal<>(this, 1, 40, 6);
-    private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2, false) {
+    private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2D, false) {
         @Override
         public void startExecuting() {
             super.startExecuting();

@@ -15,6 +15,6 @@ The sound of trumpets echoes through the night...
 [[dependencies.trumpetskeleton]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.1]"
     ordering="NONE"
     side="BOTH"

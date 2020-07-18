@@ -42,6 +42,7 @@ public class TrumpetSkeleton {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         eventBus.register(this);
+        eventBus.register(Entities.class);
 
         Entities.REGISTER.register(eventBus);
         Items.REGISTER.register(eventBus);

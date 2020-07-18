@@ -38,7 +38,7 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
     }
 
     protected boolean isHoldingTrumpet() {
-        return actor.isHolding(Items.TRUMPET_ITEM.get());
+        return actor.func_233631_a_(Items.TRUMPET_ITEM.get());  // isHolding
     }
 
     @Override
