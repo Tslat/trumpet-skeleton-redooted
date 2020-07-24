@@ -6,7 +6,7 @@ modId="trumpetskeleton"
 version="${file.jarVersion}"
 displayName="Trumpet Skeleton"
 
-authors="JamiesWhiteShirt"
+authors="JamiesWhiteShirt (port by gdude2002)"
 
 description='''
 The sound of trumpets echoes through the night...

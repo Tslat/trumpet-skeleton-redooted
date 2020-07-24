@@ -11,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -81,5 +82,10 @@ public class TrumpetSkeletonEntity extends SkeletonEntity {
                 goalSelector.addGoal(4, meleeAttackGoal);
             }
         }
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(Items.TRUMPET_SKELETON_SPAWN_EGG.get());
     }
 }
