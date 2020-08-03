@@ -1,0 +1,12 @@
+{
+  "_comment": "This file is based on es_ar.json and should be updated with it",
+
+  "entity.trumpetskeleton.trumpet_skeleton": "Esqueleto trompetista",
+
+  "subtitles.entity.trumpetskeleton.trumpet_skeleton.ambient": "Esqueleto hace doot",
+  "subtitles.entity.parrot.imitate.trumpet_skeleton": "Loro hace doot",
+  "subtitles.item.trumpetskeleton.trumpet.use": "Doot doot",
+
+  "item.trumpetskeleton.trumpet": "Trompeta",
+  "item.trumpetskeleton.trumpet_skeleton_spawn_egg": "Generador de esqueleto trompetista"
+}
