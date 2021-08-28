@@ -63,7 +63,7 @@ public class TrumpetSkeletonEntity extends SkeletonEntity {
 
     @Override
     public void reassessWeaponGoal() {
-        if (constructed && this.level != null && !this.level.isClientSide()) {
+        if (constructed && this.level != null && !this.level.isClientSide) {
             goalSelector.removeGoal(meleeAttackGoal);
             goalSelector.removeGoal(trumpetAttackGoal);
 

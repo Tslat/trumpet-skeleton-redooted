@@ -34,7 +34,7 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
 
     @Override
     public boolean canUse() {
-        return actor.getLastHurtByMob() != null && isHoldingTrumpet();
+        return actor.getTarget() != null && isHoldingTrumpet();
     }
 
     protected boolean isHoldingTrumpet() {
