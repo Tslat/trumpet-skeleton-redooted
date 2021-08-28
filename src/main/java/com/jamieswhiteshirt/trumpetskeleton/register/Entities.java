@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -21,19 +22,15 @@ public class Entities {
             "trumpet_skeleton",
 
             () -> EntityType.Builder
-                    .create(TrumpetSkeletonEntity::new, EntityClassification.MONSTER)
-                    .size(0.6F, 1.99F)
-                    .func_233606_a_(8)  // Unknown, but part of the vanilla skeleton definition
+                    .of(TrumpetSkeletonEntity::new, EntityClassification.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
                     .build("trumpet_skeleton")
     );
 
 
     @SubscribeEvent
-    public static void registerEntities(final FMLCommonSetupEvent event) {
-        GlobalEntityTypeAttributes.put(
-                TRUMPET_SKELETON_ENTITY.get(),
-
-                GlobalEntityTypeAttributes.func_233835_a_(EntityType.SKELETON)  // get
-        );
+    public static void setupStats(final EntityAttributeCreationEvent ev) {
+        ev.put(Entities.TRUMPET_SKELETON_ENTITY.get(), AbstractSkeletonEntity.createAttributes().build());
     }
 }
