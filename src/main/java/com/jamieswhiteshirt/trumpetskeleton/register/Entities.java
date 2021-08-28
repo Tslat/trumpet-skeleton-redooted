@@ -15,8 +15,8 @@ public class Entities {
             "trumpet_skeleton",
 
             () -> EntityType.Builder
-                    .create(TrumpetSkeletonEntity::new, EntityClassification.MONSTER)
-                    .size(0.6F, 1.99F)
+                    .of(TrumpetSkeletonEntity::new, EntityClassification.MONSTER)
+                    .sized(0.6F, 1.99F)
                     .build("trumpet_skeleton")
     );
 }
