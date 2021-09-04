@@ -1,14 +1,14 @@
-package com.jamieswhiteshirt.trumpetskeleton.entities.goals;
+package net.tslat.trumpetskeleton.entities.goals;
 
-import com.jamieswhiteshirt.trumpetskeleton.register.Items;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.tslat.trumpetskeleton.register.Items;
 
 import java.util.EnumSet;
 
-public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
+public class TrumpetAttackGoal<T extends Monster> extends Goal {
     private final T actor;
     private final double speed;
     private final float squaredRange;
@@ -38,7 +38,7 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
     }
 
     protected boolean isHoldingTrumpet() {
-        return actor.isHolding(Items.TRUMPET_ITEM.get());
+        return actor.isHolding(Items.TRUMPET.get());
     }
 
     @Override
@@ -67,35 +67,39 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
     public void tick() {
         LivingEntity target = actor.getTarget();
 
-        if (target == null) return;
+        if (target == null)
+            return;
 
         double squaredDistance = actor.distanceToSqr(target);
-        boolean canSeeTarget = actor.canSee(target);
-        boolean bool2 = seeCounter > 0;
+        boolean canSeeTarget = actor.hasLineOfSight(target);
+        boolean isSeeing = seeCounter > 0;
 
-        if (canSeeTarget != bool2) {
+        if (canSeeTarget != isSeeing) {
             seeCounter = 0;
         }
 
-        if (canSeeTarget) seeCounter += 1;
-        else seeCounter -= 1;
+        if (canSeeTarget) {
+            seeCounter++;
+        }
+        else {
+            seeCounter--;
+        }
 
         if (squaredDistance <= squaredRange && seeCounter >= 20) {
             actor.getNavigation().stop();
             strafeChangeTimer += 1;
-        } else {
+        }
+        else {
             actor.getNavigation().moveTo(target, speed);
             strafeChangeTimer -= 1;
         }
 
         if (strafeChangeTimer >= 20) {
-            if (actor.level.random.nextFloat() < 0.3) {
+            if (actor.level.random.nextFloat() < 0.3)
                 strafeLeft = !strafeLeft;
-            }
 
-            if (actor.level.random.nextFloat() < 0.3) {
+            if (actor.level.random.nextFloat() < 0.3)
                 strafeBack = !strafeBack;
-            }
 
             strafeChangeTimer = 0;
         }
@@ -103,7 +107,8 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
         if (strafeChangeTimer > -1) {
             if (squaredDistance > squaredRange * 0.75) {
                 strafeBack = false;
-            } else if (squaredDistance < squaredRange * 0.25) {
+            }
+            else if (squaredDistance < squaredRange * 0.25) {
                 strafeBack = true;
             }
 
@@ -116,11 +121,11 @@ public class TrumpetAttackGoal<T extends MonsterEntity> extends Goal {
         }
 
         if (actor.isUsingItem()) {
-            if (!canSeeTarget && seeCounter < -60) {
+            if (!canSeeTarget && seeCounter < -60)
                 actor.stopUsingItem();
-            }
-        } else if (--cooldown <= 0 && seeCounter >= -60) {
-            actor.startUsingItem(ProjectileHelper.getWeaponHoldingHand(actor, Items.TRUMPET_ITEM.get()));
+        }
+        else if (--cooldown <= 0 && seeCounter >= -60) {
+            actor.startUsingItem(ProjectileUtil.getWeaponHoldingHand(actor, Items.TRUMPET.get()));
             cooldown = actor.level.random.nextInt(attackInterval);
         }
     }
